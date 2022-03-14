@@ -1,0 +1,66 @@
+:root{
+    /**
+    * For light mode
+    */
+    --light-bg: white;
+    --light-text: black;
+    --light-border: black;
+
+    /**
+    * For dark mode
+    */
+    --dark-bg: black;
+    --dark-text: white;
+    --dark-border: white;
+
+    --header-height: 100px;
+}
+
+.main{
+    
+    position:fixed;
+    top:0;
+    left:0;
+    width: 200vw;
+    height: 200vh;
+    z-index: -1;
+}
+
+.dark-mode{
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}    
+.dark-mode-transparent{
+    background-color: transparent;
+    color: var(--dark-text);
+}
+
+button {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-style: solid;
+    border-color: var(--light-border);
+    /*Transition duration after hover effect is over*/
+    transition-duration: 0.5s;
+}
+
+button:hover {
+    transition-duration: 0.5s;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
+}
+button.dark-mode{
+    transition-duration: 0.5s;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    border-style: solid;
+    border-color: var(--dark-border)
+}
+
+button.dark-mode:hover{
+    transition-duration: 0.5s;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-border)
+}
