@@ -30,6 +30,7 @@ export const repoStore = defineStore("repoStore", {
                             const newLi = document.createElement('li')
                             newLi.innerHTML = res.data[i].name
                             newLi.classList.add("created_ul_label")
+                            newLi.classList.add("list_folder")
 
                             //Add click event to open the Ul id created
                             newLi.addEventListener('click', (event) => {
@@ -55,6 +56,8 @@ export const repoStore = defineStore("repoStore", {
                             newLi.classList.add("created_li")
                             newLi.innerHTML = res.data[i].name
 
+                            this.set_svg(newLi, res.data[i].download_url)
+                            
                             newLi.addEventListener('click', () => {
                                 this.display_file(res.data[i])
                             })
@@ -65,6 +68,11 @@ export const repoStore = defineStore("repoStore", {
                 })
         },
 
+        /**
+         * Deletes all elements
+         * 
+         * @param parent element of the root
+         */
         deleteRepo(parent:any){
             while(parent.childNodes.length >0){
                 const child = parent.lastChild
@@ -114,5 +122,21 @@ export const repoStore = defineStore("repoStore", {
                 useHTML.organizeContent()
             }
         },
+
+        /**
+         * Sets the list style images
+         * 
+         * @param element HTML element to add image
+         * @param data data string to check data type
+         */
+        set_svg(element:HTMLElement, data:any){
+            if(data.includes(".png")||
+            data.includes(".jp")){
+                element.classList.add('list_image')
+            }
+            else{
+                element.classList.add('list_file')
+            }
+        }
     }
 })

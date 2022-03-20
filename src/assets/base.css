@@ -69,7 +69,6 @@ button.dark-mode:hover{
     color: red;
     font-size: 1.2rem;
     font-weight: bold;
-    list-style:square;
     background-color: transparent;
 }
 .created_ul_label:hover{
@@ -78,6 +77,18 @@ button.dark-mode:hover{
 
 .created_li{
     color: black;
-    list-style:inside;
     cursor: pointer;
+    list-style-position: inside;
+}
+
+.list_image{
+    list-style-image: url('@/components/svg/camera.svg');
+}
+
+.list_file{
+    list-style-image: url('@/components/svg/file.svg')
+}
+
+.list_folder{
+    list-style-image: url('@/components/svg/folder.svg')
 }
