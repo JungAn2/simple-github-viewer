@@ -13,14 +13,12 @@
                 <!--Center part of header-->
                 <div class="col" style="align-items: center;">
                     <h3 style="padding: 10px; margin:0">Github Repo viewer</h3>
-                    <button style="width: 50%" @click="">Refresh github request</button>
                 </div>
 
                 <!--Right hand side buttons-->
                 <div class="col" style="margin-top:auto; margin-left:auto; font-size: 1.5rem">
                     <RepoChangeVue />
                     <Darkmode />
-                    <AddScreen />
                 </div>
             </div>
         </div>
@@ -29,7 +27,6 @@
         <div class="row" style="margin: 50px 0 0 0;">
             <!--Nav bar tree-->
             <nav>
-                This is the repo tree
                 <slot name="repo"></slot>
             </nav>
 
@@ -46,7 +43,6 @@
 import RepoChangeVue from '@/components/RepoChange.vue';
 import Darkmode from '@/components/Darkmode.vue';
 import { AuthStore } from '@/stores/Auth';
-import AddScreen from '../components/addScreen.vue';
 
 const useAuth = AuthStore()
 
@@ -63,7 +59,7 @@ const useAuth = AuthStore()
 
 nav {
     width: 20vw;
-    height: 100%;
+    height: calc(95vh - calc(2 * var(--header-height)));
 }
 
 .row {
@@ -78,7 +74,6 @@ nav {
 
 .screens {
     padding: 10px;
-    overflow: auto;
     width: 70vw;
     height: calc(95vh - calc(2 * var(--header-height)));
 }

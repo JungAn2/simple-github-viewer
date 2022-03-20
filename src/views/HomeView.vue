@@ -5,8 +5,9 @@
         <RepoTree />
       </template>
       <template #screen>
-          <div class="screen" id="screen">
+          <div v-if="useHTML.getDisplay == true" v-html="useHTML.getContent" class="screen" id="screen">
           </div>
+          <img v-else :src="useHTML.getImg" class="screen" />
       </template>
     </Nav>
   </main>
@@ -15,20 +16,24 @@
 <script setup lang="ts">
 import Nav from "@/layout/main.vue"
 import RepoTree from "@/components/RepoTree.vue"
+import { contentStore } from "@/stores/toHTML"
+
+
+const useHTML = contentStore()
+
 </script>
 
 
 <style scoped>
-iframe {
-  width: 100%;
-  height: 100%;
-}
-
 .screen {
   padding: 10px;
   height: auto;
   width: 100%;
   border-style: solid;
+  overflow: auto;
+  max-height: 100%;
+  min-height: 100%;
+  object-fit: contain;
 }
 
 .row{

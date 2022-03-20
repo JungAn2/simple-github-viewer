@@ -2,6 +2,7 @@
     <button @click="ModelView">Change repo</button>
     <div id="model" class="model" style="display: none;">
         <div id="model-container" class="model-container col">
+            <!--Table structure for aligning-->
             <table style="background-color: transparent">
                 <tr>
                     <td></td>
@@ -12,13 +13,13 @@
                 <tr>
                     <td style="text-align: right;">Owner:</td>
                     <td style="text-align: left;">
-                        <input type="text" v-model="ownerInput" required />
+                        <input type="text" v-model="ownerInput" v-on:keyup.enter="changeRepo" required />
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: right">Repo:</td>
                     <td style="text-align: left">
-                        <input type="text" v-model="repoInput" required />
+                        <input type="text" v-model="repoInput" v-on:keyup.enter="changeRepo" required />
                     </td>
                 </tr>
                 <tr>
@@ -36,9 +37,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { AuthStore } from '@/stores/Auth';
+import { repoStore } from '@/stores/Repo';
 import axios from 'axios'
 
 const useAuth = AuthStore()
+const useRepo = repoStore()
 
 //Stores the input from the form
 const ownerInput = ref(useAuth.getRepoOwner)
@@ -66,22 +69,17 @@ const changeRepo = async () => {
     const repoExist: boolean = await checkRepo()
 
     const span = document.getElementById("repoCheck")
-    span!.style.transitionDuration = "0.5s"
 
     if (!repoExist) {
         span!.textContent = "None existing owner or repository"
         span!.style.color = "red"
     }
-    else {
-        span!.textContent = "Connecting..."
-        span!.style.color = "green"
-    }
-    setTimeout(
-        span!.style.color = "transparent"
-        , 2000)
-
+    
     if (repoExist) {
-
+        useAuth.setRepoInfo(ownerInput.value, repoInput.value);
+        useAuth.setInitPath()
+        useRepo.repoTree(useAuth.getInitPath, useAuth.getInitId)
+        ModelView()
     }
 }
 
@@ -165,7 +163,6 @@ window.onclick = (event) => {
 }
 
 .exit:hover {
-    transition-duration: 0.5s;
     background-color: gray;
 }
 

@@ -16,6 +16,10 @@
     --header-height: 100px;
 }
 
+*{
+    transition-duration: 0.5s;
+}
+
 .main{
     
     position:fixed;
@@ -40,18 +44,14 @@ button {
     color: var(--light-text);
     border-style: solid;
     border-color: var(--light-border);
-    /*Transition duration after hover effect is over*/
-    transition-duration: 0.5s;
 }
 
 button:hover {
-    transition-duration: 0.5s;
     background-color: var(--dark-bg);
     color: var(--dark-text);
     border-color: var(--dark-border);
 }
 button.dark-mode{
-    transition-duration: 0.5s;
     background-color: var(--dark-bg);
     color: var(--dark-text);
     border-style: solid;
@@ -59,8 +59,25 @@ button.dark-mode{
 }
 
 button.dark-mode:hover{
-    transition-duration: 0.5s;
     background-color: var(--light-bg);
     color: var(--light-text);
     border-color: var(--light-border)
+}
+
+.created_ul_label{
+    cursor:pointer;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: bold;
+    list-style:square;
+    background-color: transparent;
+}
+.created_ul_label:hover{
+    background-color: black;
+}
+
+.created_li{
+    color: black;
+    list-style:inside;
+    cursor: pointer;
 }

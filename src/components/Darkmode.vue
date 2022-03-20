@@ -43,17 +43,13 @@ const recursiveRemoveDark = (body: any, bool: boolean) => {
 const Initialize = () => {
     //Main element that wraps around the whole layout
     const doc = document.getElementById("main")
-    //Main model for changing repo
-    const model = document.getElementById("model")
 
     if (useAuth.getDarkmode) {
         recursiveRemoveDark(doc, false)
-        recursiveRemoveDark(model, true)
         useAuth.setDarkmode(false)
     }
     else {
         recursiveSetDark(doc, false)
-        recursiveSetDark(model, true)
         useAuth.setDarkmode(true)
     }
 
