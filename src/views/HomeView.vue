@@ -1,23 +1,21 @@
-<script setup lang="ts">
-import Nav from "@/layout/main.vue"
-</script>
-
 <template>
-  <main>
+  <main class="row">
     <Nav>
+      <template #repo>
+        <RepoTree />
+      </template>
       <template #screen>
-        <div class="row" id="screenMain">
-          <div class="screen">
-            <!--<iframe src="https://htmlpreview.github.io/?https://github.com/Kill-9host/TestLab/blob/main/COSC370/HW1.html" />-->
+          <div class="screen" id="screen">
           </div>
-          <div class="screen">
-            <!--<iframe src="https://htmlpreview.github.io/?https://github.com/Kill-9host/TestLab/blob/main/COSC370/HW2.html" />-->
-          </div>
-        </div>
       </template>
     </Nav>
   </main>
 </template>
+
+<script setup lang="ts">
+import Nav from "@/layout/main.vue"
+import RepoTree from "@/components/RepoTree.vue"
+</script>
 
 
 <style scoped>
@@ -28,8 +26,13 @@ iframe {
 
 .screen {
   padding: 10px;
-  height: 100%;
-  width: 50%;
+  height: auto;
+  width: 100%;
   border-style: solid;
+}
+
+.row{
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

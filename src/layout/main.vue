@@ -13,7 +13,7 @@
                 <!--Center part of header-->
                 <div class="col" style="align-items: center;">
                     <h3 style="padding: 10px; margin:0">Github Repo viewer</h3>
-                    <button style="width: 50%">Refresh github request</button>
+                    <button style="width: 50%" @click="">Refresh github request</button>
                 </div>
 
                 <!--Right hand side buttons-->
@@ -45,10 +45,8 @@
 <script setup lang="ts">
 import RepoChangeVue from '@/components/RepoChange.vue';
 import Darkmode from '@/components/Darkmode.vue';
-import addScreenVue from '@/components/addScreen.vue';
 import { AuthStore } from '@/stores/Auth';
 import AddScreen from '../components/addScreen.vue';
-import AddScreen1 from '../components/addScreen.vue';
 
 const useAuth = AuthStore()
 
@@ -80,10 +78,8 @@ nav {
 
 .screens {
     padding: 10px;
-
     overflow: auto;
     width: 70vw;
     height: calc(95vh - calc(2 * var(--header-height)));
-    resize: horizontal;
 }
 </style>
