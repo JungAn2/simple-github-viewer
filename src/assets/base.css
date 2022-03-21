@@ -2,22 +2,25 @@
     /**
     * For light mode
     */
-    --light-bg: white;
-    --light-text: black;
-    --light-border: black;
+    --light-bg: #E7D7C1;
+    --light-text: #6C91C2;
+    --light-border: #46494C;
 
     /**
     * For dark mode
     */
-    --dark-bg: black;
-    --dark-text: white;
-    --dark-border: white;
+    --dark-bg: #46494C;
+    --dark-text: #6C91C2;
+    --dark-border: #E7D7C1;
 
     --header-height: 100px;
 }
 
 *{
     transition-duration: 0.5s;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    border-color: var(--light-border);
 }
 
 .main{
@@ -44,6 +47,7 @@ button {
     color: var(--light-text);
     border-style: solid;
     border-color: var(--light-border);
+    box-shadow: 5px 5px 5px 0;
 }
 
 button:hover {
@@ -66,17 +70,15 @@ button.dark-mode:hover{
 
 .created_ul_label{
     cursor:pointer;
-    color: red;
     font-size: 1.2rem;
     font-weight: bold;
     background-color: transparent;
 }
 .created_ul_label:hover{
-    background-color: black;
+    background-color: var(--dark-bg);
 }
 
 .created_li{
-    color: black;
     cursor: pointer;
     list-style-position: inside;
 }

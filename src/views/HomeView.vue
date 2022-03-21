@@ -1,5 +1,5 @@
 <template>
-  <main class="row">
+  <main class="row" id="homeView">
     <Nav>
       <template #repo>
         <RepoTree />
@@ -30,6 +30,7 @@ const useHTML = contentStore()
   height: auto;
   width: 100%;
   border-style: solid;
+  border-color: var(--light-border);
   overflow: auto;
   max-height: 100%;
   min-height: 100%;

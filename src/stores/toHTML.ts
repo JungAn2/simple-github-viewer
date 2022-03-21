@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
+import { AuthStore } from "./Auth";
 
 export const contentStore = defineStore("contentStore", {
     state: () => ({
         content: '',
         img:'',
-        display: true
+        display: true,
+        useAuth: AuthStore(),
+        darkModeStyle: ""
     }),
     getters: {
         getContent(state){
@@ -29,13 +32,16 @@ export const contentStore = defineStore("contentStore", {
         },
 
         markedToHTML() {
+            if(this.useAuth.getDarkmode)
+                this.darkModeStyle = " style=\"dark-mode\""
+            console.log(this.darkModeStyle)
             //Headers
-            this.content = this.content.replace(/#{1}\s?([^\n]+)\n/g, '<h1>$1</h1>')
-            this.content = this.content.replace(/#{2}\s?([^\n]+)\n/g, '<h2>$1</h2>')
-            this.content = this.content.replace(/#{3}\s?([^\n]+)\n/g, '<h3>$1</h3>')
-            this.content = this.content.replace(/#{4}\s?([^\n]+)\n/g, '<h4>$1</h4>')
-            this.content = this.content.replace(/#{5}\s?([^\n]+)\n/g, '<h5>$1</h5>')
-            this.content = this.content.replace(/#{6}\s?([^\n]+)\n/g, '<h6>$1</h6>')
+            this.content = this.content.replace(/#{1}\s?([^\n]+)\n/g, '<h1 '.concat(this.darkModeStyle, '>$1</h1>'))
+            this.content = this.content.replace(/#{2}\s?([^\n]+)\n/g, '<h2 '.concat(this.darkModeStyle, '>$1</h2>'))
+            this.content = this.content.replace(/#{3}\s?([^\n]+)\n/g, '<h3 '.concat(this.darkModeStyle, '>$1</h3>'))
+            this.content = this.content.replace(/#{4}\s?([^\n]+)\n/g, '<h4 '.concat(this.darkModeStyle, '>$1</h4>'))
+            this.content = this.content.replace(/#{5}\s?([^\n]+)\n/g, '<h5 '.concat(this.darkModeStyle, '>$1</h5>'))
+            this.content = this.content.replace(/#{6}\s?([^\n]+)\n/g, '<h6 '.concat(this.darkModeStyle, '>$1</h6>'))
 
             //Bold
             this.content = this.content.replace(/\*{2}?([^\n]+)\*{2}\n/g, '<span style="font-weight: bold;">$1</span>')

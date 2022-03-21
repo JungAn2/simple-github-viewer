@@ -2,33 +2,30 @@
     <button @click="ModelView">Change repo</button>
     <div id="model" class="model" style="display: none;">
         <div id="model-container" class="model-container col">
-            <!--Table structure for aligning-->
-            <table style="background-color: transparent">
-                <tr>
-                    <td></td>
-                    <td style="text-align:right">
-                        <span class="exit" @click="ModelView">X</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: right;">Owner:</td>
-                    <td style="text-align: left;">
-                        <input type="text" v-model="ownerInput" v-on:keyup.enter="changeRepo" required />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">Repo:</td>
-                    <td style="text-align: left">
-                        <input type="text" v-model="repoInput" v-on:keyup.enter="changeRepo" required />
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td style="text-align: left">
-                        <button @click="changeRepo">Change</button>
-                    </td>
-                </tr>
-            </table>
+            <span class="exit" @click="ModelView">X</span>
+            <span style="position:relative; left:25%; width: 50%;">Owner:</span>
+            <input
+                type="text"
+                v-model="ownerInput"
+                v-on:keyup.enter="changeRepo"
+                style="width:50%; border-style: none; box-shadow: 5px 5px 5px 0; height: 30px; position: relative; left:25%"
+                required
+            />
+            <br />
+            <span style="position:relative; left:25%; width: 50%;">Repo:</span>
+            <input
+                type="text"
+                v-model="repoInput"
+                v-on:keyup.enter="changeRepo"
+                style="width:50%; border-style: none; box-shadow: 5px 5px 5px 0; height: 30px; position: relative; left:25%"
+                required
+            />
+            <br />
+            <button
+                @click="changeRepo"
+                class="row"
+                style="position: relative; left:25%; width:50%; height: 30px;"
+            >Change</button>
             <span id="repoCheck" style="color:transparent"></span>
         </div>
     </div>
@@ -46,6 +43,7 @@ const useRepo = repoStore()
 //Stores the input from the form
 const ownerInput = ref(useAuth.getRepoOwner)
 const repoInput = ref(useAuth.getRepoName)
+var timer: any = null
 
 const getRepo = async (): Promise<any> => {
     let axiosData = null
@@ -73,8 +71,13 @@ const changeRepo = async () => {
     if (!repoExist) {
         span!.textContent = "None existing owner or repository"
         span!.style.color = "red"
+
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            span!.style.color = "transparent"
+        }, 2000);
     }
-    
+
     if (repoExist) {
         useAuth.setRepoInfo(ownerInput.value, repoInput.value);
         useAuth.setInitPath()
@@ -135,22 +138,27 @@ window.onclick = (event) => {
 .model-container {
     position: absolute;
     width: 25%;
-    height: 25%;
+    height: 30%;
     /**Manual Calc of position*/
     left: calc(100vw - 65%);
     top: calc(100vh - 65%);
     background-color: transparent;
     z-index: 5;
+    box-shadow: 0 0 15px 15px;
+    overflow: auto;
 }
 
 .row {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    background-color: transparent;
 }
 
 .col {
     display: flex;
     flex-direction: column;
+    background-color: transparent;
 }
 
 .exit {

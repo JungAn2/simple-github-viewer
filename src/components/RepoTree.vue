@@ -1,7 +1,8 @@
 <template>
     <button @click="getRepoTree" style="width: 100%;">Refresh</button>
-    <ul style="overflow: scroll; margin: 0; padding: 0; height: 100%;">
-        <li id="root" class="created_ul_label" @click="useRepo.showElement('/')">/root</li>
+    <br>
+    <ul style="overflow: auto; margin: 0; padding: 0; height: 100%;">
+        <li id="root" class="created_ul_label list_folder" @click="useRepo.showElement('/')">/root</li>
         <ul id="/">
         </ul>
     </ul>

@@ -1,9 +1,14 @@
 import { defineStore } from "pinia";
 import axios from 'axios'
 import { contentStore } from "./toHTML";
+import { AuthStore } from "./Auth";
+import { modeStore } from "./modes";
 
 export const repoStore = defineStore("repoStore", {
     state: () => ({
+        useHTML: contentStore(),
+        useAuth: AuthStore(),
+        useMode: modeStore(),
     }),
     getters: {
 
@@ -48,6 +53,11 @@ export const repoStore = defineStore("repoStore", {
                             newUl.setAttribute('style', 'display:none')
                             parent?.appendChild(newUl)
 
+                            if(this.useAuth.getDarkmode){
+                                newUl.classList.add('dark-mode')
+                                newLi.classList.add('dark-mode')
+                            }
+
                             //Attach to the parent
                             this.repoTree(newPath, newID)
                         }
@@ -55,6 +65,9 @@ export const repoStore = defineStore("repoStore", {
                             const newLi = document.createElement('li')
                             newLi.classList.add("created_li")
                             newLi.innerHTML = res.data[i].name
+
+                            if(this.useAuth.getDarkmode)
+                                newLi.classList.add('dark-mode')
 
                             this.set_svg(newLi, res.data[i].download_url)
                             
@@ -101,25 +114,28 @@ export const repoStore = defineStore("repoStore", {
          * @param data response data from axios call
          */
         async display_file(data: any){
-            const useHTML = contentStore()
             await axios.get(data.download_url)
             .then((res)=>{
-                useHTML.setContent(res.data)
-                useHTML.setDisplay(true)
+                this.useHTML.setContent(res.data)
+                this.useHTML.setDisplay(true)
             })
 
             if(data.download_url.includes(".md")){
-                useHTML.markedToHTML()
+                this.useHTML.markedToHTML()
             }
             else if(data.download_url.includes(".html")){
             }
             else if(data.download_url.includes(".png") ||
             data.download_url.includes(".jp")){
-                useHTML.setDisplay(false)
-                useHTML.setImg(data.download_url)
+                this.useHTML.setDisplay(false)
+                this.useHTML.setImg(data.download_url)
             }
             else{
-                useHTML.organizeContent()
+                this.useHTML.organizeContent()
+            }
+            if(this.useAuth.getDarkmode){
+                const root = document.getElementById("homeView")
+                this.useMode.recursiveSetDark(root)
             }
         },
 
