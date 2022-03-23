@@ -66,7 +66,7 @@ export const repoStore = defineStore("repoStore", {
                             newLi.innerHTML = res.data[i].name
 
                             this.set_svg(newLi, res.data[i].download_url)
-                            
+
                             newLi.addEventListener('click', () => {
                                 this.display_file(res.data[i])
                                 this.set_currentDir(newID)
@@ -83,10 +83,10 @@ export const repoStore = defineStore("repoStore", {
          * 
          * @param parent element of the root
          */
-        deleteRepo(parent:any){
-            while(parent.childNodes.length >0){
+        deleteRepo(parent: any) {
+            while (parent.childNodes.length > 0) {
                 const child = parent.lastChild
-                if(child?.hasChildNodes)
+                if (child?.hasChildNodes)
                     this.deleteRepo(child)
                 parent.removeChild(child)
             }
@@ -97,9 +97,9 @@ export const repoStore = defineStore("repoStore", {
          * 
          * @param id Element ID
          */
-        showElement(id: string){
+        showElement(id: string) {
             const element = document.getElementById(id)
-            if(element?.style.display === "none")
+            if (element?.style.display === "none")
                 element!.style.display = "block"
             else
                 element!.style.display = "none"
@@ -110,30 +110,26 @@ export const repoStore = defineStore("repoStore", {
          * 
          * @param data response data from axios call
          */
-        async display_file(data: any){
+        async display_file(data: any) {
             await axios.get(data.download_url)
-            .then((res)=>{
-                this.useHTML.setContent(res.data)
-                this.useHTML.setDisplay(true)
-            })
+                .then((res) => {
+                    this.useHTML.setContent(res.data)
+                    this.useHTML.setDisplay(true)
+                })
 
-            if(data.download_url.includes(".md")){
+            if (data.download_url.includes(".md")) {
                 this.useHTML.markedToHTML()
             }
-            else if(data.download_url.includes(".html")){
+            else if (data.download_url.includes(".html")) {
             }
-            else if(data.download_url.includes(".png") ||
-            data.download_url.includes(".jp")){
+            else if (data.download_url.includes(".png") ||
+                data.download_url.includes(".jp")) {
                 this.useHTML.setDisplay(false)
                 this.useHTML.setImg(data.download_url)
             }
-            else{
+            else {
                 this.useHTML.organizeContent()
             }
-            // if(this.useAuth.getDarkmode){
-            //     const root = document.getElementById("homeView")
-            //     this.useMode.recursiveSetDark(root)
-            // }
         },
 
         /**
@@ -142,28 +138,23 @@ export const repoStore = defineStore("repoStore", {
          * @param element HTML element to add image
          * @param data data string to check data type
          */
-        set_svg(element:HTMLElement, data:any){
-            if(data.includes(".png")||
-            data.includes(".jp")){
+        set_svg(element: HTMLElement, data: any) {
+            if (data.includes(".png") ||
+                data.includes(".jp")) {
                 element.classList.add('list_image')
             }
-            else{
+            else {
                 element.classList.add('list_file')
             }
         },
 
-        set_currentDir(id: string){
-           
+        set_currentDir(id: string) {
+
             const previousDir = document.getElementById(this.useAuth.getCurrentDir)
             const currentDir = document.getElementById(id)
-            if(this.useAuth.darkmode){
-                previousDir!.style.backgroundColor="var(--base-bg)"
-                currentDir!.style.backgroundColor="var(--light-bg)"
-            }
-            else{
-                previousDir!.style.backgroundColor="var(--base-bg)"
-                currentDir!.style.backgroundColor="var(--dark-bg)"
-            }
+            previousDir!.classList.remove('invert')
+            currentDir!.classList.add('invert')
+
             this.useAuth.setCurrentDir(id)
         }
     }

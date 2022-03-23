@@ -7,16 +7,16 @@
         <!--Main web-->
         <div class="row">
             <!--Nav bar tree-->
-            <nav class="col">
+            <nav class="col secondary">
                 <div class="header">
                     <div class="row">
                     <h1>Github repo viewer</h1>
                     </div>
                     <div class="row">
-                    <redirectWebVue :linkSrc="useAuth.getWebsite" imgSrc="@/components/img/png/GitHub-logo.png" tip="Link to the github"/>
+                    <redirectWebVue :linkSrc="useAuth.getWebsite" imgSrc="@/components/img/png/GitHub-logo.png" :tip="useAuth.getWebsite"/>
                     </div>
                     <div class="row">
-                        <RepoChangeVue />
+                        <ThemeSelectVue />
                         <Darkmode />
                     </div>
                 </div>
@@ -33,9 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import RepoChangeVue from '@/components/RepoChange.vue';
-import Darkmode from '@/components/Darkmode.vue';
+import Darkmode from '@/components/Invertmode.vue';
 import redirectWebVue from '@/components/redirectWeb.vue';
+import ThemeSelectVue from '@/components/ThemeSelect.vue';
 import { AuthStore } from '@/stores/Auth';
 
 const useAuth = AuthStore()
@@ -55,9 +55,8 @@ h1{
 }
 
 nav {
-    width: calc( 20vw - 60px);
-    height: calc( 100vh - 60px);
-    margin: 10px;
+    width: 20vw;
+    height:100vh;
 }
 
 .row {
@@ -72,8 +71,7 @@ nav {
 }
 
 .screens {
-    margin: 10px;
-    width: calc( 80vw - 60px);
-    height: calc( 100vh - 60px);
+    width: 80vw;
+    height: calc(100vh - 26px);
 }
 </style>

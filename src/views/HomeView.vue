@@ -2,6 +2,7 @@
   <main class="row" id="homeView">
     <Nav>
       <template #repo>
+        <RepoChangeVue />
         <RepoTree />
       </template>
       <template #screen>
@@ -20,6 +21,7 @@
 <script setup lang="ts">
 import Nav from "@/layout/main.vue"
 import RepoTree from "@/components/RepoTree.vue"
+import RepoChangeVue from '@/components/RepoChange.vue';
 import { contentStore } from "@/stores/toHTML"
 
 

@@ -133,7 +133,7 @@ window.onclick = (event) => {
     z-index: 3;
     align-content: center;
     justify-content: center;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(var(--backdrop-filter));
     background-color: transparent;
 }
 
@@ -176,8 +176,7 @@ window.onclick = (event) => {
 }
 
 input,
-span{
+span {
     background-color: transparent;
 }
-
 </style>

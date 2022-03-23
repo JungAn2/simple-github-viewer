@@ -25,15 +25,11 @@ a {
 .tooltip {
     position: absolute;
     visibility: hidden;
-    width: 120px;
-    background-color: var(--dark-bg);
     text-align: center;
     padding: 5px;
     border-radius: 5%;
-}
-
-.tooltip .dark-mode {
-    background-color: var(--light-bg);
+    border-style:dotted;
+    border-color: black;
 }
 
 a:hover .tooltip {

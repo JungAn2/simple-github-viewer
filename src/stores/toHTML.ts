@@ -4,30 +4,30 @@ import { AuthStore } from "./Auth";
 export const contentStore = defineStore("contentStore", {
     state: () => ({
         content: '',
-        img:'',
+        img: '',
         display: true,
         useAuth: AuthStore(),
         darkModeStyle: ""
     }),
     getters: {
-        getContent(state){
+        getContent(state) {
             return state.content
         },
-        getImg(state){
+        getImg(state) {
             return state.img
         },
-        getDisplay(state){
+        getDisplay(state) {
             return state.display
         },
     },
     actions: {
-        setContent(data: any){
+        setContent(data: any) {
             this.content = data
         },
-        setImg(address:string){
+        setImg(address: string) {
             this.img = address
         },
-        setDisplay(bool: boolean){
+        setDisplay(bool: boolean) {
             this.display = bool
         },
 
@@ -35,7 +35,7 @@ export const contentStore = defineStore("contentStore", {
          * Convert marked syntex to html
          */
         markedToHTML() {
-            if(this.useAuth.getDarkmode)
+            if (this.useAuth.getDarkmode)
                 this.darkModeStyle = " style=\"dark-mode\""
             //Headers
             this.content = this.content.replace(/#{1}\s?([^\n]+)\n/g, '<h1>$1</h1>')
@@ -49,15 +49,18 @@ export const contentStore = defineStore("contentStore", {
             this.content = this.content.replace(/\*{2}?([^\n]+)\*{2}\n/g, '<span style="font-weight: bold;">$1</span>')
 
             //Italic
-            this.content = this.content.replace(/\*{1}?([^\n]+)\*{1}\n/g,'<span style="font-style: italic;"><span>')
+            this.content = this.content.replace(/\*{1}?([^\n]+)\*{1}\n/g, '<span style="font-style: italic;"><span>')
 
             //Enter
             this.content = this.content.replace(/\n\n/g, '<br>')
 
             //``` code ``` will display in highlighed format
-            this.content = this.content.replace(/\`{3}?([^\n]+)\`{3}\n/g, '<span style="background-color: yellow">$1</span>')
+            this.content = this.content.replace(/\`{3}?([^\n]+)\`{3}\n/g, '<span style="background-color: yellow">$1</span><br>')
 
-            
+            //list
+            this.content = this.content.replace(/-{1}\s?([^\n]+)\n/g, '<li>$1</li>')
+
+
         },
 
         /**

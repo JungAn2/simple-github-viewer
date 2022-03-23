@@ -14,45 +14,45 @@ export const AuthStore = defineStore("auth", {
         currentDir: "root",
     }),
     getters: {
-        getRepoOwner(state){
+        getRepoOwner(state) {
             return state.repoOwner
         },
-        getRepoName(state){
+        getRepoName(state) {
             return state.repo
         },
-        getDarkmode(state){
+        getDarkmode(state) {
             return state.darkmode
         },
-        getInitPath(state){
+        getInitPath(state) {
             return state.initPath
         },
-        getInitId(state){
+        getInitId(state) {
             return state.initID
         },
-        getWebsite(state){
+        getWebsite(state) {
             return state.website
         },
-        getCurrentDir(state){
+        getCurrentDir(state) {
             return state.currentDir
         }
     },
     actions: {
-        setRepoInfo(repoUser: string, repoName: string){
+        setRepoInfo(repoUser: string, repoName: string) {
             this.repoOwner = repoUser
             this.repo = repoName
         },
 
-        setDarkmode(bool: boolean){
+        setDarkmode(bool: boolean) {
             this.darkmode = bool
         },
 
-        setInitPath(){
+        setInitPath() {
             this.initPath = "https://api.github.com/repos/".concat(this.repoOwner, "/", this.repo, "/contents")
         },
-        setWebsite(){
+        setWebsite() {
             this.website = "https://github.com/".concat(this.repoOwner, "/", this.repo)
         },
-        setCurrentDir(dir: string){
+        setCurrentDir(dir: string) {
             this.currentDir = dir
         }
     }
