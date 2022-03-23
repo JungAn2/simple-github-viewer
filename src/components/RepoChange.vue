@@ -25,8 +25,8 @@
             <br />
             <button
                 @click="changeRepo"
-                class="row"
-                style="position: relative; left:25%; width:50%; height: 30px;"
+                class="row box-shadow"
+                style="position: relative; left:25%; width:50%; height: 30px; text-align: center;;"
             >Change</button>
             <span id="repoCheck" style="color:transparent"></span>
         </div>
@@ -133,7 +133,7 @@ window.onclick = (event) => {
     z-index: 3;
     align-content: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     background-color: transparent;
 }
 
@@ -175,7 +175,9 @@ window.onclick = (event) => {
     background-color: gray;
 }
 
-table tr td {
+input,
+span{
     background-color: transparent;
 }
+
 </style>

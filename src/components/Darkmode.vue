@@ -1,5 +1,5 @@
 <template>
-    <button class="box-shadow" @click="useMode.Initialize()" onload="lightMode()">Toggle</button>
+    <button class="box-shadow" @click="useMode.Initialize()" onload="lightMode()">Dark-Mode</button>
 </template>>
 
 <script setup lang="ts">

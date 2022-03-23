@@ -72,9 +72,6 @@ export const repoStore = defineStore("repoStore", {
                                 this.set_currentDir(newID)
                             })
 
-                            if(this.useAuth.getDarkmode)
-                                newLi.classList.add("dark-mode")
-
                             parent?.appendChild(newLi)
                         }
                     }
@@ -133,10 +130,10 @@ export const repoStore = defineStore("repoStore", {
             else{
                 this.useHTML.organizeContent()
             }
-            if(this.useAuth.getDarkmode){
-                const root = document.getElementById("homeView")
-                this.useMode.recursiveSetDark(root)
-            }
+            // if(this.useAuth.getDarkmode){
+            //     const root = document.getElementById("homeView")
+            //     this.useMode.recursiveSetDark(root)
+            // }
         },
 
         /**
@@ -160,12 +157,12 @@ export const repoStore = defineStore("repoStore", {
             const previousDir = document.getElementById(this.useAuth.getCurrentDir)
             const currentDir = document.getElementById(id)
             if(this.useAuth.darkmode){
-                previousDir?.classList.add("dark-mode")
-                currentDir?.classList.remove("dark-mode")
+                previousDir!.style.backgroundColor="var(--base-bg)"
+                currentDir!.style.backgroundColor="var(--light-bg)"
             }
             else{
-                previousDir?.classList.remove("dark-mode")
-                currentDir?.classList.add("dark-mode")
+                previousDir!.style.backgroundColor="var(--base-bg)"
+                currentDir!.style.backgroundColor="var(--dark-bg)"
             }
             this.useAuth.setCurrentDir(id)
         }

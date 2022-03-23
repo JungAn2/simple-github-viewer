@@ -1,4 +1,9 @@
 :root{
+    --base-bg: var(--light-bg);
+    --base-text: var(--light-text);
+    --base-border: var(--light-border);
+
+
     /**
     * For light mode
     */
@@ -18,17 +23,10 @@
 
 *{
     transition-duration: 0.5s;
-    background-color: var(--light-bg);
-    color: var(--light-text);
-    border-color: var(--light-border);
+    background-color: var(--base-bg);
+    color: var(--base-text);
+    border-color: var(--base-border);
     font-family: 'Times New Roman', Times, serif;
-}
-
-* .dark-mode{
-    transition-duration: 0.5s;
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-    border-color: var(--dark-border);
 }
 
 .main{
@@ -51,10 +49,10 @@
 }
 
 button {
-    background-color: var(--light-bg);
-    color: var(--light-text);
+    background-color: var(--base-bg);
+    color: var(--base-text);
     border-style: solid;
-    border-color: var(--light-border);
+    border-color: var(--base-border);
 }
 
 button:hover {
