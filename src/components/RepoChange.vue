@@ -1,23 +1,25 @@
 <template>
-    <button @click="ModelView">Change repo</button>
+    <button class="box-shadow" @click="ModelView">Change repo</button>
     <div id="model" class="model" style="display: none;">
-        <div id="model-container" class="model-container col">
+        <div id="model-container" class="model-container col box-shadow">
             <span class="exit" @click="ModelView">X</span>
             <span style="position:relative; left:25%; width: 50%;">Owner:</span>
             <input
                 type="text"
+                class="box-shadow"
                 v-model="ownerInput"
                 v-on:keyup.enter="changeRepo"
-                style="width:50%; border-style: none; box-shadow: 5px 5px 5px 0; height: 30px; position: relative; left:25%"
+                style="width:50%; height: 30px; position: relative; left:25%"
                 required
             />
             <br />
             <span style="position:relative; left:25%; width: 50%;">Repo:</span>
             <input
                 type="text"
+                class="box-shadow"
                 v-model="repoInput"
                 v-on:keyup.enter="changeRepo"
-                style="width:50%; border-style: none; box-shadow: 5px 5px 5px 0; height: 30px; position: relative; left:25%"
+                style="width:50%; height: 30px; position: relative; left:25%"
                 required
             />
             <br />
@@ -142,10 +144,9 @@ window.onclick = (event) => {
     /**Manual Calc of position*/
     left: calc(100vw - 65%);
     top: calc(100vh - 65%);
-    background-color: transparent;
     z-index: 5;
-    box-shadow: 0 0 15px 15px;
     overflow: auto;
+    border-style: solid;
 }
 
 .row {

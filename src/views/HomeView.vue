@@ -5,9 +5,13 @@
         <RepoTree />
       </template>
       <template #screen>
-          <div v-if="useHTML.getDisplay == true" v-html="useHTML.getContent" class="screen" id="screen">
-          </div>
-          <img v-else :src="useHTML.getImg" class="screen" />
+        <div
+          v-if="useHTML.getDisplay == true"
+          v-html="useHTML.getContent"
+          class="screen box-shadow"
+          id="screen"
+        ></div>
+        <img v-else :src="useHTML.getImg" class="screen box-shadow" />
       </template>
     </Nav>
   </main>
@@ -37,7 +41,7 @@ const useHTML = contentStore()
   object-fit: contain;
 }
 
-.row{
+.row {
   justify-content: space-between;
   align-items: center;
 }

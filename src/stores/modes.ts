@@ -44,6 +44,8 @@ export const modeStore = defineStore("modeStore", {
          */
         Initialize() {
             //Main element that wraps around the whole layout
+            //document.body.classList.add("dark-mode")
+
             const doc = document.getElementById("homeView")
 
             if (this.useAuth.getDarkmode) {

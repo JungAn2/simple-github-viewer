@@ -2,16 +2,16 @@
     /**
     * For light mode
     */
-    --light-bg: #E7D7C1;
-    --light-text: #6C91C2;
-    --light-border: #46494C;
+    --light-bg: #E7D2CC;
+    --light-text: black;
+    --light-border: #868B8E;
 
     /**
     * For dark mode
     */
-    --dark-bg: #46494C;
-    --dark-text: #6C91C2;
-    --dark-border: #E7D7C1;
+    --dark-bg: var(--light-border);
+    --dark-text: var(--light-text);
+    --dark-border: var(--light-bg);
 
     --header-height: 100px;
 }
@@ -21,6 +21,14 @@
     background-color: var(--light-bg);
     color: var(--light-text);
     border-color: var(--light-border);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+* .dark-mode{
+    transition-duration: 0.5s;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
 }
 
 .main{
@@ -47,7 +55,6 @@ button {
     color: var(--light-text);
     border-style: solid;
     border-color: var(--light-border);
-    box-shadow: 5px 5px 5px 0;
 }
 
 button:hover {
@@ -78,19 +85,30 @@ button.dark-mode:hover{
     background-color: var(--dark-bg);
 }
 
+.created_ul_label:hover .dark-mode{
+    background-color: var(--light-bg);
+}
 .created_li{
     cursor: pointer;
     list-style-position: inside;
 }
 
 .list_image{
-    list-style-image: url('@/components/svg/camera.svg');
+    list-style-image: url('@/components/img/svg/camera.svg');
 }
 
 .list_file{
-    list-style-image: url('@/components/svg/file.svg')
+    list-style-image: url('@/components/img/svg/file.svg')
 }
 
 .list_folder{
-    list-style-image: url('@/components/svg/folder.svg')
+    list-style-image: url('@/components/img/svg/folder.svg')
+}
+
+.avatar{
+    border-radius: 50%;
+}
+
+.box-shadow{
+    box-shadow: 5px 5px 5px 0; 
 }

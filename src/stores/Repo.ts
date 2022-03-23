@@ -22,6 +22,7 @@ export const repoStore = defineStore("repoStore", {
          * @param id The parent element id
          */
         async repoTree(path: string, id: string) {
+            this.useAuth.setWebsite()
             const parent = document.getElementById(id)
             this.deleteRepo(parent)
             //Delete all the element inside before reloading
@@ -33,6 +34,7 @@ export const repoStore = defineStore("repoStore", {
 
                             //Label for the list
                             const newLi = document.createElement('li')
+                            const Li_ID = res.data[i].path.concat('li')
                             newLi.innerHTML = res.data[i].name
                             newLi.classList.add("created_ul_label")
                             newLi.classList.add("list_folder")
@@ -53,27 +55,25 @@ export const repoStore = defineStore("repoStore", {
                             newUl.setAttribute('style', 'display:none')
                             parent?.appendChild(newUl)
 
-                            if(this.useAuth.getDarkmode){
-                                newUl.classList.add('dark-mode')
-                                newLi.classList.add('dark-mode')
-                            }
-
                             //Attach to the parent
                             this.repoTree(newPath, newID)
                         }
                         else {
                             const newLi = document.createElement('li')
+                            const newID = res.data[i].path
+                            newLi.setAttribute('id', newID)
                             newLi.classList.add("created_li")
                             newLi.innerHTML = res.data[i].name
-
-                            if(this.useAuth.getDarkmode)
-                                newLi.classList.add('dark-mode')
 
                             this.set_svg(newLi, res.data[i].download_url)
                             
                             newLi.addEventListener('click', () => {
                                 this.display_file(res.data[i])
+                                this.set_currentDir(newID)
                             })
+
+                            if(this.useAuth.getDarkmode)
+                                newLi.classList.add("dark-mode")
 
                             parent?.appendChild(newLi)
                         }
@@ -153,6 +153,21 @@ export const repoStore = defineStore("repoStore", {
             else{
                 element.classList.add('list_file')
             }
+        },
+
+        set_currentDir(id: string){
+           
+            const previousDir = document.getElementById(this.useAuth.getCurrentDir)
+            const currentDir = document.getElementById(id)
+            if(this.useAuth.darkmode){
+                previousDir?.classList.add("dark-mode")
+                currentDir?.classList.remove("dark-mode")
+            }
+            else{
+                previousDir?.classList.remove("dark-mode")
+                currentDir?.classList.add("dark-mode")
+            }
+            this.useAuth.setCurrentDir(id)
         }
     }
 })

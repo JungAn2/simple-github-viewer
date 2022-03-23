@@ -7,9 +7,11 @@ export const AuthStore = defineStore("auth", {
     state: () => ({
         repoOwner: "JungAn2",
         repo: "MarkdownNotes",
+        website: "https://github.com/JungAn2/MarkdownNotes",
         darkmode: false,
         initPath: "",
-        initID: '/'
+        initID: '/',
+        currentDir: "root",
     }),
     getters: {
         getRepoOwner(state){
@@ -27,6 +29,12 @@ export const AuthStore = defineStore("auth", {
         getInitId(state){
             return state.initID
         },
+        getWebsite(state){
+            return state.website
+        },
+        getCurrentDir(state){
+            return state.currentDir
+        }
     },
     actions: {
         setRepoInfo(repoUser: string, repoName: string){
@@ -40,7 +48,12 @@ export const AuthStore = defineStore("auth", {
 
         setInitPath(){
             this.initPath = "https://api.github.com/repos/".concat(this.repoOwner, "/", this.repo, "/contents")
+        },
+        setWebsite(){
+            this.website = "https://github.com/".concat(this.repoOwner, "/", this.repo)
+        },
+        setCurrentDir(dir: string){
+            this.currentDir = dir
         }
-
     }
 })

@@ -9,7 +9,12 @@
             <!--Nav bar tree-->
             <nav class="col">
                 <div class="header">
+                    <div class="row">
                     <h1>Github repo viewer</h1>
+                    </div>
+                    <div class="row">
+                    <redirectWebVue :linkSrc="useAuth.getWebsite" imgSrc="@/components/img/png/GitHub-logo.png" tip="Link to the github"/>
+                    </div>
                     <div class="row">
                         <RepoChangeVue />
                         <Darkmode />
@@ -30,6 +35,7 @@
 <script setup lang="ts">
 import RepoChangeVue from '@/components/RepoChange.vue';
 import Darkmode from '@/components/Darkmode.vue';
+import redirectWebVue from '@/components/redirectWeb.vue';
 import { AuthStore } from '@/stores/Auth';
 
 const useAuth = AuthStore()
@@ -37,6 +43,11 @@ const useAuth = AuthStore()
 </script>
 
 <style scoped>
+
+h1{
+    font-size: 2rem;
+    text-align: center;
+}
 .header {
     display: grid;
     justify-content: center;
