@@ -23,9 +23,7 @@
                 <slot name="repo"></slot>
             </nav>
 
-            <!-- Two screen for displaying-->
             <div class="row screens">
-                <!--Slot for screen 1-->
                 <slot name="screen"></slot>
             </div>
         </div>

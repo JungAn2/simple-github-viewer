@@ -1,8 +1,8 @@
 <template>
-    <button class="box-shadow" @click="ModelView">Change repo</button>
-    <div id="model" class="model" style="display: none;">
-        <div id="model-container" class="model-container col box-shadow">
-            <span class="exit" @click="ModelView">X</span>
+    <button class="box-shadow" @click="ModalView">Change repo</button>
+    <div id="modal" class="modal" style="display: none;" @click.self="ModalView">
+        <div id="modal-container" class="modal-container col box-shadow" >
+            <span class="exit" @click="ModalView">X</span>
             <span style="position:relative; left:25%; width: 50%;">Owner:</span>
             <input
                 type="text"
@@ -84,19 +84,19 @@ const changeRepo = async () => {
         useAuth.setRepoInfo(ownerInput.value, repoInput.value);
         useAuth.setInitPath()
         useRepo.repoTree(useAuth.getInitPath, useAuth.getInitId)
-        ModelView()
+        ModalView()
     }
 }
 
 
 /**
- * For showing model
+ * For showing modal
  */
-const ModelView = () => {
+const ModalView = () => {
     /**
-     * For Displaying model
+     * For Displaying modal
      */
-    const doc = document.getElementById("model")
+    const doc = document.getElementById("modal")
     if (doc!.style.display === "none") {
         doc!.style.display = "block"
 
@@ -109,22 +109,10 @@ const ModelView = () => {
         document.body.style.overflow = "auto"
     }
 }
-
-/**
- * Closing model view by clicking on model not container
- * 
- * @param event Winodws click event
- */
-window.onclick = (event) => {
-    const model = document.getElementById("model")
-    //Targets model which is the background image
-    if (event.target == model)
-        model!.style.display = "none"
-}
 </script>
 
 <style scoped>
-.model {
+.modal {
     position: absolute;
     height: 100vh;
     width: 100vw;
@@ -137,14 +125,14 @@ window.onclick = (event) => {
     background-color: transparent;
 }
 
-.model-container {
+.modal-container {
     position: absolute;
     width: 25%;
     height: 30%;
     /**Manual Calc of position*/
     left: calc(100vw - 65%);
     top: calc(100vh - 65%);
-    z-index: 5;
+    z-index: 10;
     overflow: auto;
     border-style: solid;
 }

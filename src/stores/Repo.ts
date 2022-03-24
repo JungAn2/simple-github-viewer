@@ -72,6 +72,8 @@ export const repoStore = defineStore("repoStore", {
                                 this.set_currentDir(newID)
                             })
 
+                            this.useAuth.setnewMap(newID, res.data[i].download_url)
+
                             parent?.appendChild(newLi)
                         }
                     }

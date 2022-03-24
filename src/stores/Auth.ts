@@ -12,6 +12,7 @@ export const AuthStore = defineStore("auth", {
         initPath: "",
         initID: '/',
         currentDir: "root",
+        downloadMap: new Map(),
     }),
     getters: {
         getRepoOwner(state) {
@@ -34,7 +35,10 @@ export const AuthStore = defineStore("auth", {
         },
         getCurrentDir(state) {
             return state.currentDir
-        }
+        },
+        getMap(state){
+            return state.downloadMap
+        },
     },
     actions: {
         setRepoInfo(repoUser: string, repoName: string) {
@@ -54,6 +58,10 @@ export const AuthStore = defineStore("auth", {
         },
         setCurrentDir(dir: string) {
             this.currentDir = dir
+        },
+
+        setnewMap(key: string, value:string){
+            this.downloadMap.set(key, value)
         }
     }
 })

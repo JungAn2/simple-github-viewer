@@ -1,6 +1,6 @@
 <template>
     <button class="box-shadow" @click="showModal">Theme Selector</button>
-    <div class="theme-modal background hidden" id="theme-modal">
+    <div class="theme-modal background" style="display: none" id="theme-modal" @click="showModal">
         <div class="theme-modal-container">
             <div class="row">
                 <div class="card theme-base" @click="changeTheme('root')"><div class="col">
@@ -21,16 +21,11 @@ import ThemeCardVue from './ThemeCard.vue';
 const showModal = () => {
     const modal = document.getElementById("theme-modal")
     //doc[0] since there is only one element with that class name
-    modal?.classList.remove('hidden')
+    if(modal!.style.display === "none")
+        modal!.style.display = "block"
+    else
+        modal!.style.display = "none"
 
-}
-
-window.onclick = (event) => {
-    const modal = document.getElementById("theme-modal")
-
-    //Targets model which is the background image
-    if (event.target == modal)
-        modal!.classList.add('hidden')
 }
 
 /**
@@ -64,7 +59,7 @@ const changeTheme = (id: string) => {
         root.style.setProperty('--base-text', 'var(--theme-2-text)')
         root.style.setProperty('--base-border', 'var(--theme-2-border)')
     }
-    modal?.classList.add('hidden')
+    showModal()
 }
 
 
@@ -93,6 +88,7 @@ const changeTheme = (id: string) => {
     height: 25vh;
     border-radius: 20%;
     margin: 5vh;
+    z-index: 10;
 }
 
 .theme-base{
